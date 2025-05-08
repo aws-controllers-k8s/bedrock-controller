@@ -1,5 +1,5 @@
 service:
-  full_name: AWS Bedrock
+  full_name: Amazon Bedrock
   short_name: Bedrock
   link: https://aws.amazon.com/bedrock/
   documentation: https://docs.aws.amazon.com/bedrock/
