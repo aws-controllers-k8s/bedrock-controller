@@ -1,6 +1,6 @@
 module github.com/aws-controllers-k8s/bedrock-controller
 
-go 1.19
+go 1.24.2
 
 require (
 	github.com/aws-controllers-k8s/runtime v0.45.0
