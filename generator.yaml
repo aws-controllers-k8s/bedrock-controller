@@ -1,0 +1,7 @@
+ignore:
+  resource_names:
+      - EvaluationJob
+      - Guardrail
+      - GuardrailVersion
+      - ModelCustomizationJob
+      - ProvisionedModelThroughput
