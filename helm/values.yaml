@@ -41,6 +41,9 @@ deployment:
   # To have DNS options set along with hostNetwork, you have to specify DNS policy
   # explicitly to 'ClusterFirstWithHostNet'.
   dnsPolicy: ClusterFirst
+  # Set rollout strategy for deployment.
+  # See: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+  strategy: {}
   extraVolumes: []
   extraVolumeMounts: []
 
@@ -163,6 +166,9 @@ leaderElection:
   # pod.
   namespace: ""
 
+# Enable Cross Account Resource Management (default = true). Set this to false to disable cross account resource management.
+enableCARM: true
+
 # Configuration for feature gates.  These are optional controller features that
 # can be individually enabled ("true") or disabled ("false") by adding key/value
 # pairs below.
@@ -172,6 +178,6 @@ featureGates:
   # Enables the Team level granularity for CARM. See https://github.com/aws-controllers-k8s/community/issues/2031
   TeamLevelCARM: false
   # Enable ReadOnlyResources feature/annotation. 
-  ReadOnlyResources: false
+  ReadOnlyResources: true
   # Enable ResourceAdoption feature/annotation. 
-  ResourceAdoption: false
+  ResourceAdoption: true
