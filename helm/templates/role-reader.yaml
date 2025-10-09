@@ -16,6 +16,7 @@ rules:
 - apiGroups:
   - bedrock.services.k8s.aws
   resources:
+  - inferenceprofiles
   verbs:
   - get
   - list

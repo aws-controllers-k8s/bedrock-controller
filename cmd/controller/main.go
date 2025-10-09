@@ -39,6 +39,8 @@ import (
 	svctypes "github.com/aws-controllers-k8s/bedrock-controller/apis/v1alpha1"
 	svcresource "github.com/aws-controllers-k8s/bedrock-controller/pkg/resource"
 
+	_ "github.com/aws-controllers-k8s/bedrock-controller/pkg/resource/inference_profile"
+
 	"github.com/aws-controllers-k8s/bedrock-controller/pkg/version"
 )
 

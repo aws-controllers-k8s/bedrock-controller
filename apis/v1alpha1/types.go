@@ -27,3 +27,185 @@ var (
 	_ = &aws.JSONValue{}
 	_ = ackv1alpha1.AWSAccountID("")
 )
+
+// Provides a summary of a policy build workflow, including its current status,
+// timing information, and key identifiers.
+type AutomatedReasoningPolicyBuildWorkflowSummary struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Contains summary information about an Automated Reasoning policy, including
+// metadata and timestamps.
+type AutomatedReasoningPolicySummary struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Represents a test for validating an Automated Reasoning policy. tests contain
+// sample inputs and expected outcomes to verify policy behavior.
+type AutomatedReasoningPolicyTestCase struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Contains the results of testing an Automated Reasoning policy against various
+// scenarios and validation checks.
+type AutomatedReasoningPolicyTestResult struct {
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Contains summary information about a custom model deployment, including its
+// ARN, name, status, and associated custom model.
+type CustomModelDeploymentSummary struct {
+	CreatedAt     *metav1.Time `json:"createdAt,omitempty"`
+	LastUpdatedAt *metav1.Time `json:"lastUpdatedAt,omitempty"`
+}
+
+// Summary information for a custom model.
+type CustomModelSummary struct {
+	CreationTime *metav1.Time `json:"creationTime,omitempty"`
+}
+
+// For a Distillation job, the status details for the data processing sub-task
+// of the job.
+type DataProcessingDetails struct {
+	CreationTime     *metav1.Time `json:"creationTime,omitempty"`
+	LastModifiedTime *metav1.Time `json:"lastModifiedTime,omitempty"`
+}
+
+// Summary information of an evaluation job.
+type EvaluationSummary struct {
+	CreationTime *metav1.Time `json:"creationTime,omitempty"`
+}
+
+// Information about a foundation model.
+type FoundationModelDetails struct {
+	ModelARN *string `json:"modelARN,omitempty"`
+}
+
+// Summary information for a foundation model.
+type FoundationModelSummary struct {
+	ModelARN *string `json:"modelARN,omitempty"`
+}
+
+// Contains details about a guardrail.
+//
+// This data type is used in the following API operations:
+//
+//   - ListGuardrails response body (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListGuardrails.html#API_ListGuardrails_ResponseSyntax)
+type GuardrailSummary struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Information about the imported model.
+type ImportedModelSummary struct {
+	CreationTime *metav1.Time `json:"creationTime,omitempty"`
+}
+
+// Contains information about a model.
+type InferenceProfileModel struct {
+	ModelARN *string `json:"modelARN,omitempty"`
+}
+
+// Contains information about the model or system-defined inference profile
+// that is the source for an inference profile..
+type InferenceProfileModelSource struct {
+	CopyFrom *string `json:"copyFrom,omitempty"`
+}
+
+// Contains information about an inference profile.
+type InferenceProfileSummary struct {
+	CreatedAt            *metav1.Time             `json:"createdAt,omitempty"`
+	Description          *string                  `json:"description,omitempty"`
+	InferenceProfileARN  *string                  `json:"inferenceProfileARN,omitempty"`
+	InferenceProfileID   *string                  `json:"inferenceProfileID,omitempty"`
+	InferenceProfileName *string                  `json:"inferenceProfileName,omitempty"`
+	Models               []*InferenceProfileModel `json:"models,omitempty"`
+	Status               *string                  `json:"status,omitempty"`
+	Type                 *string                  `json:"type_,omitempty"`
+	UpdatedAt            *metav1.Time             `json:"updatedAt,omitempty"`
+}
+
+// Contains details about an endpoint for a model from Amazon Bedrock Marketplace.
+type MarketplaceModelEndpoint struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Provides a summary of an endpoint for a model from Amazon Bedrock Marketplace.
+type MarketplaceModelEndpointSummary struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// Contains details about each model copy job.
+//
+// This data type is used in the following API operations:
+//
+//   - ListModelCopyJobs response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListModelCopyJobs.html#API_ListModelCopyJobs_ResponseSyntax)
+type ModelCopyJobSummary struct {
+	CreationTime    *metav1.Time `json:"creationTime,omitempty"`
+	TargetModelTags []*Tag       `json:"targetModelTags,omitempty"`
+}
+
+// Information about one customization job
+type ModelCustomizationJobSummary struct {
+	CreationTime     *metav1.Time `json:"creationTime,omitempty"`
+	EndTime          *metav1.Time `json:"endTime,omitempty"`
+	LastModifiedTime *metav1.Time `json:"lastModifiedTime,omitempty"`
+}
+
+// Information about the import job.
+type ModelImportJobSummary struct {
+	CreationTime     *metav1.Time `json:"creationTime,omitempty"`
+	EndTime          *metav1.Time `json:"endTime,omitempty"`
+	LastModifiedTime *metav1.Time `json:"lastModifiedTime,omitempty"`
+}
+
+// A summary of a batch inference job.
+type ModelInvocationJobSummary struct {
+	EndTime           *metav1.Time `json:"endTime,omitempty"`
+	JobExpirationTime *metav1.Time `json:"jobExpirationTime,omitempty"`
+	LastModifiedTime  *metav1.Time `json:"lastModifiedTime,omitempty"`
+	SubmitTime        *metav1.Time `json:"submitTime,omitempty"`
+}
+
+// Details about a prompt router.
+type PromptRouterSummary struct {
+	CreatedAt *metav1.Time `json:"createdAt,omitempty"`
+	UpdatedAt *metav1.Time `json:"updatedAt,omitempty"`
+}
+
+// A summary of information about a Provisioned Throughput.
+//
+// This data type is used in the following API operations:
+//
+//   - ListProvisionedThroughputs response (https://docs.aws.amazon.com/bedrock/latest/APIReference/API_ListProvisionedModelThroughputs.html#API_ListProvisionedModelThroughputs_ResponseSyntax)
+type ProvisionedModelSummary struct {
+	CommitmentExpirationTime *metav1.Time `json:"commitmentExpirationTime,omitempty"`
+	CreationTime             *metav1.Time `json:"creationTime,omitempty"`
+	FoundationModelARN       *string      `json:"foundationModelARN,omitempty"`
+	LastModifiedTime         *metav1.Time `json:"lastModifiedTime,omitempty"`
+}
+
+// Definition of the key/value pair for a tag.
+type Tag struct {
+	Key   *string `json:"key,omitempty"`
+	Value *string `json:"value,omitempty"`
+}
+
+// For a Distillation job, the status details for the training sub-task of the
+// job.
+type TrainingDetails struct {
+	CreationTime     *metav1.Time `json:"creationTime,omitempty"`
+	LastModifiedTime *metav1.Time `json:"lastModifiedTime,omitempty"`
+}
+
+// For a Distillation job, the status details for the validation sub-task of
+// the job.
+type ValidationDetails struct {
+	CreationTime     *metav1.Time `json:"creationTime,omitempty"`
+	LastModifiedTime *metav1.Time `json:"lastModifiedTime,omitempty"`
+}

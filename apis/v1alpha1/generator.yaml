@@ -1,12 +1,58 @@
 ignore:
   resource_names:
+      - AutomatedReasoningPolicy
+      - AutomatedReasoningPolicyTestCase
+      - AutomatedReasoningPolicyVersion
+      - CustomModel
+      - CustomModelDeployment
       - EvaluationJob
+      - FoundationModelAgreement
       - Guardrail
       - GuardrailVersion
       - ModelCustomizationJob
+      - PromptRouter
       - ProvisionedModelThroughput
-      - InferenceProfile
+      # - InferenceProfile
       - MarketplaceModelEndpoint
       - ModelCopyJob
       - ModelImportJob
       - ModelInvocationJob
+  field_paths:
+    - CreateInferenceProfileInput.ClientRequestToken
+
+operations:
+  GetInferenceProfile:
+    resource_name: InferenceProfile
+    custom_check_required_fields_missing_method: customCheckRequired
+    operation_type:
+      - ReadOne
+
+resources:
+
+  InferenceProfile:
+    is_arn_primary_key: true
+
+    fields:
+      Description:
+        is_immutable: true
+      InferenceProfileName:
+        is_immutable: true
+      ModelSource:
+        is_immutable: true
+
+      InferenceProfileIdentifier:
+        set:
+          - method: ReadOne
+            from: ACKResourceMetadata.ARN
+      ACKResourceMetadata.ARN:
+        set:
+          - method: ReadOne
+            to: InferenceProfileIdentifier
+
+    hooks:
+      sdk_read_one_post_build_request:
+        template_path: hooks/inference_profile/sdk_read_one_post_build_request.go.tpl
+      sdk_delete_post_build_request:
+        template_path: hooks/inference_profile/sdk_delete_post_build_request.go.tpl
+
+

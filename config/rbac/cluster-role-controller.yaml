@@ -23,6 +23,26 @@ rules:
   - list
   - watch
 - apiGroups:
+  - bedrock.services.k8s.aws
+  resources:
+  - inferenceprofiles
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - bedrock.services.k8s.aws
+  resources:
+  - inferenceprofiles/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
   - services.k8s.aws
   resources:
   - adoptedresources
