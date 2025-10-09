@@ -31,6 +31,8 @@ resources:
 
   InferenceProfile:
     is_arn_primary_key: true
+    update_operation: 
+      custom_method_name: custom_update
 
     fields:
       Description:
@@ -52,6 +54,8 @@ resources:
     hooks:
       sdk_read_one_post_build_request:
         template_path: hooks/inference_profile/sdk_read_one_post_build_request.go.tpl
+      sdk_read_one_post_set_output:
+        template_path: hooks/inference_profile/sdk_read_one_post_set_output.go.tpl
       sdk_delete_post_build_request:
         template_path: hooks/inference_profile/sdk_delete_post_build_request.go.tpl
 
