@@ -1,0 +1,15 @@
+apiVersion: bedrock.services.k8s.aws/v1alpha1
+kind: InferenceProfile
+metadata:
+  name: $INFERENCE_PROFILE_NAME
+  namespace: default
+spec:
+  inferenceProfileName: INFERENCE_PROFILE_NAME
+  description: $INFERENCE_PROFILE_DESCRIPTION
+  modelSource:
+    copyFrom: $SOURCE_MODEL_ID
+  tags:
+    - key: $TAG_KEY_1
+      value: $TAG_VALUE_1
+    - key: $TAG_KEY_2
+      value: $TAG_VALUE_2
