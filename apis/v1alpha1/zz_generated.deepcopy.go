@@ -437,6 +437,11 @@ func (in *InferenceProfileStatus) DeepCopyInto(out *InferenceProfileStatus) {
 			}
 		}
 	}
+	if in.InferenceProfileID != nil {
+		in, out := &in.InferenceProfileID, &out.InferenceProfileID
+		*out = new(string)
+		**out = **in
+	}
 	if in.Status != nil {
 		in, out := &in.Status, &out.Status
 		*out = new(string)

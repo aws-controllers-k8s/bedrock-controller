@@ -153,6 +153,12 @@ spec:
                   - type
                   type: object
                 type: array
+              inferenceProfileID:
+                description: |-
+                  The unique identifier of the inference profile.
+
+                  Regex Pattern: `^[a-zA-Z0-9-:.]+$`
+                type: string
               status:
                 description: |-
                   The status of the inference profile. ACTIVE means that the inference profile

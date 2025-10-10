@@ -58,6 +58,11 @@ type InferenceProfileStatus struct {
 	// resource
 	// +kubebuilder:validation:Optional
 	Conditions []*ackv1alpha1.Condition `json:"conditions"`
+	// The unique identifier of the inference profile.
+	//
+	// Regex Pattern: `^[a-zA-Z0-9-:.]+$`
+	// +kubebuilder:validation:Optional
+	InferenceProfileID *string `json:"inferenceProfileID,omitempty"`
 	// The status of the inference profile. ACTIVE means that the inference profile
 	// is ready to be used.
 	// +kubebuilder:validation:Optional

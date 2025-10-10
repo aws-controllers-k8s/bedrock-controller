@@ -105,6 +105,11 @@ func (rm *resourceManager) sdkFind(
 		arn := ackv1alpha1.AWSResourceName(*resp.InferenceProfileArn)
 		ko.Status.ACKResourceMetadata.ARN = &arn
 	}
+	if resp.InferenceProfileId != nil {
+		ko.Status.InferenceProfileID = resp.InferenceProfileId
+	} else {
+		ko.Status.InferenceProfileID = nil
+	}
 	if resp.InferenceProfileName != nil {
 		ko.Spec.InferenceProfileName = resp.InferenceProfileName
 	} else {

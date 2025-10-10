@@ -42,14 +42,11 @@ resources:
       ModelSource:
         is_immutable: true
 
-      InferenceProfileIdentifier:
-        set:
-          - method: ReadOne
-            from: ACKResourceMetadata.ARN
-      ACKResourceMetadata.ARN:
-        set:
-          - method: ReadOne
-            to: InferenceProfileIdentifier
+      InferenceProfileId:
+        is_read_only: true
+        from:
+          operation: GetInferenceProfile
+          path: InferenceProfileId
 
     hooks:
       sdk_read_one_post_build_request:
