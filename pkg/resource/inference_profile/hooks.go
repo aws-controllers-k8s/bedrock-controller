@@ -17,7 +17,7 @@ import (
 	"context"
 
 	svcapitypes "github.com/aws-controllers-k8s/bedrock-controller/apis/v1alpha1"
-	"github.com/aws-controllers-k8s/bedrock-controller/pkg/resource/tags"
+	"github.com/aws-controllers-k8s/bedrock-controller/pkg/tags"
 	ackcompare "github.com/aws-controllers-k8s/runtime/pkg/compare"
 )
 
