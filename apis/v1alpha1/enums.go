@@ -15,11 +15,123 @@
 
 package v1alpha1
 
+type AgreementStatus string
+
+const (
+	AgreementStatus_AVAILABLE     AgreementStatus = "AVAILABLE"
+	AgreementStatus_ERROR         AgreementStatus = "ERROR"
+	AgreementStatus_NOT_AVAILABLE AgreementStatus = "NOT_AVAILABLE"
+	AgreementStatus_PENDING       AgreementStatus = "PENDING"
+)
+
 type ApplicationType string
 
 const (
 	ApplicationType_ModelEvaluation ApplicationType = "ModelEvaluation"
 	ApplicationType_RagEvaluation   ApplicationType = "RagEvaluation"
+)
+
+type AttributeType string
+
+const (
+	AttributeType_BOOLEAN     AttributeType = "BOOLEAN"
+	AttributeType_NUMBER      AttributeType = "NUMBER"
+	AttributeType_STRING      AttributeType = "STRING"
+	AttributeType_STRING_LIST AttributeType = "STRING_LIST"
+)
+
+type AuthorizationStatus string
+
+const (
+	AuthorizationStatus_AUTHORIZED     AuthorizationStatus = "AUTHORIZED"
+	AuthorizationStatus_NOT_AUTHORIZED AuthorizationStatus = "NOT_AUTHORIZED"
+)
+
+type AutomatedReasoningCheckLogicWarningType string
+
+const (
+	AutomatedReasoningCheckLogicWarningType_ALWAYS_FALSE AutomatedReasoningCheckLogicWarningType = "ALWAYS_FALSE"
+	AutomatedReasoningCheckLogicWarningType_ALWAYS_TRUE  AutomatedReasoningCheckLogicWarningType = "ALWAYS_TRUE"
+)
+
+type AutomatedReasoningCheckResult string
+
+const (
+	AutomatedReasoningCheckResult_IMPOSSIBLE            AutomatedReasoningCheckResult = "IMPOSSIBLE"
+	AutomatedReasoningCheckResult_INVALID               AutomatedReasoningCheckResult = "INVALID"
+	AutomatedReasoningCheckResult_NO_TRANSLATION        AutomatedReasoningCheckResult = "NO_TRANSLATION"
+	AutomatedReasoningCheckResult_SATISFIABLE           AutomatedReasoningCheckResult = "SATISFIABLE"
+	AutomatedReasoningCheckResult_TOO_COMPLEX           AutomatedReasoningCheckResult = "TOO_COMPLEX"
+	AutomatedReasoningCheckResult_TRANSLATION_AMBIGUOUS AutomatedReasoningCheckResult = "TRANSLATION_AMBIGUOUS"
+	AutomatedReasoningCheckResult_VALID                 AutomatedReasoningCheckResult = "VALID"
+)
+
+type AutomatedReasoningPolicyAnnotationStatus string
+
+const (
+	AutomatedReasoningPolicyAnnotationStatus_APPLIED AutomatedReasoningPolicyAnnotationStatus = "APPLIED"
+	AutomatedReasoningPolicyAnnotationStatus_FAILED  AutomatedReasoningPolicyAnnotationStatus = "FAILED"
+)
+
+type AutomatedReasoningPolicyBuildDocumentContentType string
+
+const (
+	AutomatedReasoningPolicyBuildDocumentContentType_pdf AutomatedReasoningPolicyBuildDocumentContentType = "pdf"
+	AutomatedReasoningPolicyBuildDocumentContentType_txt AutomatedReasoningPolicyBuildDocumentContentType = "txt"
+)
+
+type AutomatedReasoningPolicyBuildMessageType string
+
+const (
+	AutomatedReasoningPolicyBuildMessageType_ERROR   AutomatedReasoningPolicyBuildMessageType = "ERROR"
+	AutomatedReasoningPolicyBuildMessageType_INFO    AutomatedReasoningPolicyBuildMessageType = "INFO"
+	AutomatedReasoningPolicyBuildMessageType_WARNING AutomatedReasoningPolicyBuildMessageType = "WARNING"
+)
+
+type AutomatedReasoningPolicyBuildResultAssetType string
+
+const (
+	AutomatedReasoningPolicyBuildResultAssetType_BUILD_LOG         AutomatedReasoningPolicyBuildResultAssetType = "BUILD_LOG"
+	AutomatedReasoningPolicyBuildResultAssetType_POLICY_DEFINITION AutomatedReasoningPolicyBuildResultAssetType = "POLICY_DEFINITION"
+	AutomatedReasoningPolicyBuildResultAssetType_QUALITY_REPORT    AutomatedReasoningPolicyBuildResultAssetType = "QUALITY_REPORT"
+)
+
+type AutomatedReasoningPolicyBuildWorkflowStatus string
+
+const (
+	AutomatedReasoningPolicyBuildWorkflowStatus_BUILDING         AutomatedReasoningPolicyBuildWorkflowStatus = "BUILDING"
+	AutomatedReasoningPolicyBuildWorkflowStatus_CANCELLED        AutomatedReasoningPolicyBuildWorkflowStatus = "CANCELLED"
+	AutomatedReasoningPolicyBuildWorkflowStatus_CANCEL_REQUESTED AutomatedReasoningPolicyBuildWorkflowStatus = "CANCEL_REQUESTED"
+	AutomatedReasoningPolicyBuildWorkflowStatus_COMPLETED        AutomatedReasoningPolicyBuildWorkflowStatus = "COMPLETED"
+	AutomatedReasoningPolicyBuildWorkflowStatus_FAILED           AutomatedReasoningPolicyBuildWorkflowStatus = "FAILED"
+	AutomatedReasoningPolicyBuildWorkflowStatus_PREPROCESSING    AutomatedReasoningPolicyBuildWorkflowStatus = "PREPROCESSING"
+	AutomatedReasoningPolicyBuildWorkflowStatus_SCHEDULED        AutomatedReasoningPolicyBuildWorkflowStatus = "SCHEDULED"
+	AutomatedReasoningPolicyBuildWorkflowStatus_TESTING          AutomatedReasoningPolicyBuildWorkflowStatus = "TESTING"
+)
+
+type AutomatedReasoningPolicyBuildWorkflowType string
+
+const (
+	AutomatedReasoningPolicyBuildWorkflowType_IMPORT_POLICY  AutomatedReasoningPolicyBuildWorkflowType = "IMPORT_POLICY"
+	AutomatedReasoningPolicyBuildWorkflowType_INGEST_CONTENT AutomatedReasoningPolicyBuildWorkflowType = "INGEST_CONTENT"
+	AutomatedReasoningPolicyBuildWorkflowType_REFINE_POLICY  AutomatedReasoningPolicyBuildWorkflowType = "REFINE_POLICY"
+)
+
+type AutomatedReasoningPolicyTestRunResult string
+
+const (
+	AutomatedReasoningPolicyTestRunResult_FAILED AutomatedReasoningPolicyTestRunResult = "FAILED"
+	AutomatedReasoningPolicyTestRunResult_PASSED AutomatedReasoningPolicyTestRunResult = "PASSED"
+)
+
+type AutomatedReasoningPolicyTestRunStatus string
+
+const (
+	AutomatedReasoningPolicyTestRunStatus_COMPLETED   AutomatedReasoningPolicyTestRunStatus = "COMPLETED"
+	AutomatedReasoningPolicyTestRunStatus_FAILED      AutomatedReasoningPolicyTestRunStatus = "FAILED"
+	AutomatedReasoningPolicyTestRunStatus_IN_PROGRESS AutomatedReasoningPolicyTestRunStatus = "IN_PROGRESS"
+	AutomatedReasoningPolicyTestRunStatus_NOT_STARTED AutomatedReasoningPolicyTestRunStatus = "NOT_STARTED"
+	AutomatedReasoningPolicyTestRunStatus_SCHEDULED   AutomatedReasoningPolicyTestRunStatus = "SCHEDULED"
 )
 
 type CommitmentDuration string
@@ -29,12 +141,28 @@ const (
 	CommitmentDuration_SixMonths CommitmentDuration = "SixMonths"
 )
 
+type CustomModelDeploymentStatus string
+
+const (
+	CustomModelDeploymentStatus_Active   CustomModelDeploymentStatus = "Active"
+	CustomModelDeploymentStatus_Creating CustomModelDeploymentStatus = "Creating"
+	CustomModelDeploymentStatus_Failed   CustomModelDeploymentStatus = "Failed"
+)
+
 type CustomizationType string
 
 const (
 	CustomizationType_CONTINUED_PRE_TRAINING CustomizationType = "CONTINUED_PRE_TRAINING"
 	CustomizationType_DISTILLATION           CustomizationType = "DISTILLATION"
 	CustomizationType_FINE_TUNING            CustomizationType = "FINE_TUNING"
+	CustomizationType_IMPORTED               CustomizationType = "IMPORTED"
+)
+
+type EntitlementAvailability string
+
+const (
+	EntitlementAvailability_AVAILABLE     EntitlementAvailability = "AVAILABLE"
+	EntitlementAvailability_NOT_AVAILABLE EntitlementAvailability = "NOT_AVAILABLE"
 )
 
 type EvaluationJobStatus string
@@ -89,6 +217,13 @@ const (
 	FoundationModelLifecycleStatus_LEGACY FoundationModelLifecycleStatus = "LEGACY"
 )
 
+type GuardrailContentFilterAction string
+
+const (
+	GuardrailContentFilterAction_BLOCK GuardrailContentFilterAction = "BLOCK"
+	GuardrailContentFilterAction_NONE  GuardrailContentFilterAction = "NONE"
+)
+
 type GuardrailContentFilterType string
 
 const (
@@ -98,6 +233,20 @@ const (
 	GuardrailContentFilterType_PROMPT_ATTACK GuardrailContentFilterType = "PROMPT_ATTACK"
 	GuardrailContentFilterType_SEXUAL        GuardrailContentFilterType = "SEXUAL"
 	GuardrailContentFilterType_VIOLENCE      GuardrailContentFilterType = "VIOLENCE"
+)
+
+type GuardrailContentFiltersTierName string
+
+const (
+	GuardrailContentFiltersTierName_CLASSIC  GuardrailContentFiltersTierName = "CLASSIC"
+	GuardrailContentFiltersTierName_STANDARD GuardrailContentFiltersTierName = "STANDARD"
+)
+
+type GuardrailContextualGroundingAction string
+
+const (
+	GuardrailContextualGroundingAction_BLOCK GuardrailContextualGroundingAction = "BLOCK"
+	GuardrailContextualGroundingAction_NONE  GuardrailContextualGroundingAction = "NONE"
 )
 
 type GuardrailContextualGroundingFilterType string
@@ -170,6 +319,7 @@ type GuardrailSensitiveInformationAction string
 const (
 	GuardrailSensitiveInformationAction_ANONYMIZE GuardrailSensitiveInformationAction = "ANONYMIZE"
 	GuardrailSensitiveInformationAction_BLOCK     GuardrailSensitiveInformationAction = "BLOCK"
+	GuardrailSensitiveInformationAction_NONE      GuardrailSensitiveInformationAction = "NONE"
 )
 
 type GuardrailStatus string
@@ -183,16 +333,37 @@ const (
 	GuardrailStatus_VERSIONING GuardrailStatus = "VERSIONING"
 )
 
+type GuardrailTopicAction string
+
+const (
+	GuardrailTopicAction_BLOCK GuardrailTopicAction = "BLOCK"
+	GuardrailTopicAction_NONE  GuardrailTopicAction = "NONE"
+)
+
 type GuardrailTopicType string
 
 const (
 	GuardrailTopicType_DENY GuardrailTopicType = "DENY"
 )
 
-type InferenceProfileStatus string
+type GuardrailTopicsTierName string
 
 const (
-	InferenceProfileStatus_ACTIVE InferenceProfileStatus = "ACTIVE"
+	GuardrailTopicsTierName_CLASSIC  GuardrailTopicsTierName = "CLASSIC"
+	GuardrailTopicsTierName_STANDARD GuardrailTopicsTierName = "STANDARD"
+)
+
+type GuardrailWordAction string
+
+const (
+	GuardrailWordAction_BLOCK GuardrailWordAction = "BLOCK"
+	GuardrailWordAction_NONE  GuardrailWordAction = "NONE"
+)
+
+type InferenceProfileStatus_SDK string
+
+const (
+	InferenceProfileStatus_SDK_ACTIVE InferenceProfileStatus_SDK = "ACTIVE"
 )
 
 type InferenceProfileType string
@@ -207,6 +378,17 @@ type InferenceType string
 const (
 	InferenceType_ON_DEMAND   InferenceType = "ON_DEMAND"
 	InferenceType_PROVISIONED InferenceType = "PROVISIONED"
+)
+
+type JobStatusDetails string
+
+const (
+	JobStatusDetails_Completed  JobStatusDetails = "Completed"
+	JobStatusDetails_Failed     JobStatusDetails = "Failed"
+	JobStatusDetails_InProgress JobStatusDetails = "InProgress"
+	JobStatusDetails_NotStarted JobStatusDetails = "NotStarted"
+	JobStatusDetails_Stopped    JobStatusDetails = "Stopped"
+	JobStatusDetails_Stopping   JobStatusDetails = "Stopping"
 )
 
 type ModelCopyJobStatus string
@@ -266,6 +448,21 @@ const (
 	ModelModality_TEXT      ModelModality = "TEXT"
 )
 
+type ModelStatus string
+
+const (
+	ModelStatus_Active   ModelStatus = "Active"
+	ModelStatus_Creating ModelStatus = "Creating"
+	ModelStatus_Failed   ModelStatus = "Failed"
+)
+
+type OfferType string
+
+const (
+	OfferType_ALL    OfferType = "ALL"
+	OfferType_PUBLIC OfferType = "PUBLIC"
+)
+
 type PerformanceConfigLatency string
 
 const (
@@ -299,6 +496,20 @@ type QueryTransformationType string
 
 const (
 	QueryTransformationType_QUERY_DECOMPOSITION QueryTransformationType = "QUERY_DECOMPOSITION"
+)
+
+type RegionAvailability string
+
+const (
+	RegionAvailability_AVAILABLE     RegionAvailability = "AVAILABLE"
+	RegionAvailability_NOT_AVAILABLE RegionAvailability = "NOT_AVAILABLE"
+)
+
+type RerankingMetadataSelectionMode string
+
+const (
+	RerankingMetadataSelectionMode_ALL       RerankingMetadataSelectionMode = "ALL"
+	RerankingMetadataSelectionMode_SELECTIVE RerankingMetadataSelectionMode = "SELECTIVE"
 )
 
 type RetrieveAndGenerateType string
@@ -351,4 +562,10 @@ type Status string
 const (
 	Status_INCOMPATIBLE_ENDPOINT Status = "INCOMPATIBLE_ENDPOINT"
 	Status_REGISTERED            Status = "REGISTERED"
+)
+
+type VectorSearchRerankingConfigurationType string
+
+const (
+	VectorSearchRerankingConfigurationType_BEDROCK_RERANKING_MODEL VectorSearchRerankingConfigurationType = "BEDROCK_RERANKING_MODEL"
 )
