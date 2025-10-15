@@ -51,9 +51,9 @@ func (rm *resourceManager) customCheckRequired(r *resource) bool {
 	return r.ko.Status.ACKResourceMetadata == nil || r.ko.Status.ACKResourceMetadata.ARN == nil
 }
 
-// custom_update handles updates for inference profiles. Since inference profiles
+// customUpdate handles updates for inference profiles. Since inference profiles
 // are immutable resources, only tag updates are supported.
-func (rm *resourceManager) custom_update(
+func (rm *resourceManager) customUpdate(
 	ctx context.Context,
 	desired *resource,
 	latest *resource,
