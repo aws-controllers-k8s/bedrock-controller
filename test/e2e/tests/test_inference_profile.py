@@ -86,6 +86,7 @@ class TestInferenceProfile:
         assert inference_profile_arn is not None
         assert cr["spec"]["description"] == TEST_DESCRIPTION
         assert cr["spec"]["modelSource"]["copyFrom"] == TEST_MODEL_ID
+        assert cr["status"]["status"] == "ACTIVE"
 
         expected_tags = [
             {"key": TAG_KEY_1, "value": TAG_VALUE_1},

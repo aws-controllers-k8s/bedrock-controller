@@ -32,7 +32,7 @@ resources:
   InferenceProfile:
     is_arn_primary_key: true
     update_operation: 
-      custom_method_name: custom_update
+      custom_method_name: customUpdate
 
     fields:
       Description:
@@ -55,5 +55,11 @@ resources:
         template_path: hooks/inference_profile/sdk_read_one_post_set_output.go.tpl
       sdk_delete_post_build_request:
         template_path: hooks/inference_profile/sdk_delete_post_build_request.go.tpl
+
+    synced:
+      when:
+        - path: Status.Status
+          in:
+            - ACTIVE
 
 
