@@ -26,7 +26,7 @@ from e2e.replacement_values import REPLACEMENT_VALUES
 
 INFERENCE_PROFILE_RESOURCE_PLURAL="inferenceprofiles"
 TEST_DESCRIPTION = "Test profile"
-TEST_MODEL_ID = "arn:aws:bedrock:us-west-2::foundation-model/amazon.titan-image-generator-v2:0"
+TEST_MODEL_ID = "arn:aws:bedrock:us-west-2::foundation-model/amazon.titan-embed-text-v2:0"
 TAG_KEY_1 = "environment"
 TAG_VALUE_1 = "dev"
 TAG_KEY_2 = "project"
