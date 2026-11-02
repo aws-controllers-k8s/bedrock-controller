@@ -2,9 +2,13 @@ package tags
 
 import (
 	"context"
+	"maps"
+	"slices"
 
 	svcapitypes "github.com/aws-controllers-k8s/bedrock-controller/apis/v1alpha1"
+	ackcompare "github.com/aws-controllers-k8s/runtime/pkg/compare"
 	ackrtlog "github.com/aws-controllers-k8s/runtime/pkg/runtime/log"
+	acktags "github.com/aws-controllers-k8s/runtime/pkg/tags"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	svcsdk "github.com/aws/aws-sdk-go-v2/service/bedrock"
 	svcsdktypes "github.com/aws/aws-sdk-go-v2/service/bedrock/types"
@@ -49,7 +53,7 @@ func GetResourceTags(
 	return tags, nil
 }
 
-// SyncResourceTags uses TagDeliveryStream and UntagDeliveryStream API Calls to add, remove
+// SyncResourceTags uses TagResource and UntagResource API Calls to add, remove
 // and update resource tags.
 func SyncResourceTags(
 	ctx context.Context,
@@ -66,14 +70,20 @@ func SyncResourceTags(
 		exit(err)
 	}()
 
-	addedOrUpdated, removed := computeTagsDelta(desiredTags, latestTags)
+	from := toACKTags(latestTags)
+	to := toACKTags(desiredTags)
+	added, _, removed := ackcompare.GetTagsDifference(from, to)
+
+	if len(added) == 0 && len(removed) == 0 {
+		return nil
+	}
 
 	if len(removed) > 0 {
 		_, err = client.UntagResource(
 			ctx,
 			&svcsdk.UntagResourceInput{
 				ResourceARN: aws.String(resourceARN),
-				TagKeys:     removed,
+				TagKeys:     slices.Sorted(maps.Keys(removed)),
 			},
 		)
 		mr.RecordAPICall("UPDATE", "UntagResource", err)
@@ -82,7 +92,14 @@ func SyncResourceTags(
 		}
 	}
 
-	if len(addedOrUpdated) > 0 {
+	if len(added) > 0 {
+		addedOrUpdated := make([]svcsdktypes.Tag, 0, len(added))
+		for _, k := range slices.Sorted(maps.Keys(added)) {
+			addedOrUpdated = append(addedOrUpdated, svcsdktypes.Tag{
+				Key:   aws.String(k),
+				Value: aws.String(added[k]),
+			})
+		}
 		_, err = client.TagResource(
 			ctx,
 			&svcsdk.TagResourceInput{
@@ -98,58 +115,19 @@ func SyncResourceTags(
 	return nil
 }
 
-// computeTagsDelta compares two Tag arrays and return two different list
-// containing the addedOrupdated and removed tags. The removed tags array
-// only contains the tags Keys.
-func computeTagsDelta(
-	a []*svcapitypes.Tag,
-	b []*svcapitypes.Tag,
-) (addedOrUpdated []svcsdktypes.Tag, removed []string) {
-
-	// Find the keys in the Spec have either been added or updated.
-	addedOrUpdated = make([]svcsdktypes.Tag, 0)
-	for _, aTag := range a {
-		found := false
-		for _, bTag := range b {
-			if *aTag.Key == *bTag.Key {
-				if *aTag.Value == *bTag.Value {
-					found = true
-				}
-
-				break
-			}
+// toACKTags converts a Bedrock tag list into the ACK runtime tags map.
+// Nil tags and tags without a key are skipped.
+func toACKTags(tags []*svcapitypes.Tag) acktags.Tags {
+	m := make(acktags.Tags)
+	for _, t := range tags {
+		if t == nil || t.Key == nil {
+			continue
 		}
-		if !found {
-			addedOrUpdated = append(addedOrUpdated, svcsdktypes.Tag{
-				Key:   aTag.Key,
-				Value: aTag.Value,
-			})
+		v := ""
+		if t.Value != nil {
+			v = *t.Value
 		}
+		m[*t.Key] = v
 	}
-
-	for _, bTag := range b {
-		found := false
-		for _, aTag := range a {
-			if *aTag.Key == *bTag.Key {
-				found = true
-				break
-			}
-		}
-
-		if !found {
-			removed = append(removed, *bTag.Key)
-		}
-	}
-
-	return addedOrUpdated, removed
-}
-
-// equalTags returns true if two Tag arrays are equal regardless of the order
-// of their elements.
-func EqualTags(
-	a []*svcapitypes.Tag,
-	b []*svcapitypes.Tag,
-) bool {
-	addedOrUpdated, removed := computeTagsDelta(a, b)
-	return len(addedOrUpdated) == 0 && len(removed) == 0
+	return m
 }
